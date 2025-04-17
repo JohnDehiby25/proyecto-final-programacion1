@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.proyectofinalprogramacion1;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -53,4 +54,51 @@ public class Paciente extends Usuario{
 		
 		actualizacionDatos.close();
 	}
+	public ArrayList<CitaMedica> solicitarCitasMedicas(){
+		ArrayList<CitaMedica> listaCitasMedicasSolicitadas = new ArrayList<>();
+		for(int i=0; i<listCitasMedicas.size();i++) {
+			listaCitasMedicasSolicitadas.add(listCitasMedicas.get(i));
+		}
+		return listaCitasMedicasSolicitadas;
+		
+	}	
+	public ArrayList<CitaMedica> cancelarCitasMedicas(LocalDateTime fechaCitaEliminar){
+		for(int i=0;i<listCitasMedicas.size();i++) {
+			if(listCitasMedicas.get(i).getHorario().isEqual(fechaCitaEliminar)) {
+				listCitasMedicas.remove(i);
+			}
+		}
+		return listCitasMedicas;
+		
+	}
+	
+	public ArrayList<CitaMedica> obtenerCitasMedicasNuevas(Administrador admin){
+		ArrayList<CitaMedica> listCitasMedicas=new ArrayList<>();
+		for(CitaMedica c: admin.getListCitasMedicas()) {
+			if(c.getIdPaciente().equals(c.getIdPaciente())) {
+				listCitasMedicas.add(c);
+			}
+		}
+		return listCitasMedicas;
+	}
+	public HistorialMedico consultarHistorialMedico(LocalDateTime fechabuscar){
+		for(int i=0; i<listHistorialMedico.size();i++) {
+			if(listHistorialMedico.get(i).getFecha().equals(fechabuscar)) {
+				return listHistorialMedico.get(i);
+			}
+		}
+		return null;
+		
+	}
+	public void notificarCita(LocalDateTime fechabuscar) {
+		for(CitaMedica c:listCitasMedicas) {
+			if(c.getHorario().isBefore(fechabuscar)){
+				System.out.println("La fecha de su cita medica se esta acercando");
+			}
+		}
+	}
+	public ArrayList<HistorialMedico> getListHistorialmedico(){
+		return listHistorialMedico;
+	}
+	
 }
