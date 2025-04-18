@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.proyectofinalprogramacion1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import java.time.*;
 
 public class Medico extends Usuario implements HorarioConsulta{
@@ -59,6 +60,37 @@ public class Medico extends Usuario implements HorarioConsulta{
 	@Override
 	public ArrayList<LocalDateTime> obtenerHorariosDisponibles(){
 		return listHorariosDisponibles;
+	}
+	public HistorialMedico registrarDiagnostico(String idpacientebuscar, String diagnosticonuevo){
+		for(Paciente p:listPacientes) {
+			if(p.getId().equals(idpacientebuscar)){
+				for(HistorialMedico h: p.getListHistorialmedico()) {
+					h.setDiagnostico(diagnosticonuevo);
+					return h;
+				}
+			}
+		}
+		return null;
+	}
+	public HistorialMedico registrarTratamiento(String idpacientebuscar, String nuevoTratamiento){
+		for(Paciente p:listPacientes) {
+			if(p.getId().equals(idpacientebuscar)) {
+				for(HistorialMedico h: p.getListHistorialmedico()) {
+					h.setTratamiento(nuevoTratamiento);
+					return h;
+				}
+			}
+		}return null;
+	}
+
+	
+
+	
+	public ArrayList<Paciente> getlistPacientesDisponibles(){
+		return listPacientes;
+	}
+	public ArrayList<HistorialMedico> getListHistorialMedico(){
+		return listHistorialMedico;
 	}
 	
 }
