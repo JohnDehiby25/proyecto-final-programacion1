@@ -110,6 +110,7 @@ public class Paciente extends Usuario{
 	public ArrayList<HistorialMedico> getListHistorialmedico(){
 		return listHistorialMedico;
 	}
+	//Se implementa la interfaz notificable pero es para que el paciente en este caso reciba cualquier novedad desde administrador
 	public void notificar(String mensaje) {
 		System.out.println("El paciente " + getNombre() + " recibió el mensaje" + mensaje);
 	}
