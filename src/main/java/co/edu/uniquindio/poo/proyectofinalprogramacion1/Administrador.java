@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Administrador extends Usuario {
+public class Administrador extends Usuario  {
 	private ArrayList<Medico> listMedicos;
 	private ArrayList<Paciente> listPacientes;
 	private ArrayList<Sala> listSalas;
@@ -164,5 +164,9 @@ public class Administrador extends Usuario {
 	        }
 	    }
 	    return null;
+	}
+	//Notifica al medico o paciente de cualquier novedad
+	public void notificarUsuario(Notificacion usuario,String mensaje) {
+		usuario.notificar(mensaje);
 	}
 }

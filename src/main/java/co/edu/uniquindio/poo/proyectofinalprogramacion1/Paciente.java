@@ -110,5 +110,8 @@ public class Paciente extends Usuario{
 	public ArrayList<HistorialMedico> getListHistorialmedico(){
 		return listHistorialMedico;
 	}
+	public void notificar(String mensaje) {
+		System.out.println("El paciente " + getNombre() + " recibió el mensaje" + mensaje);
+	}
 	
 }
