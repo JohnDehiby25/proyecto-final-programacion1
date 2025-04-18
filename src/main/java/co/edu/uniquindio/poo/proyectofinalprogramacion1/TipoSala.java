@@ -11,7 +11,7 @@
 package co.edu.uniquindio.poo.proyectofinalprogramacion1;
 
 public enum TipoSala {
-	PACIENTESPRIORITARIOS,
-	PACIENTESGENERAL,
-	PACIENTESESTADOGRAVE;
+	PACIENTESPRIORITARIOS, //Para casos de emergencia o adultos mayores
+	PACIENTESGENERAL, // Consultas rutinarias
+	PACIENTESESTADOGRAVE; //Pacientes en condicion critica
 }
