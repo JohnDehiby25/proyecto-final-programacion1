@@ -1,1 +1,14 @@
 /target/
+ # Archivos generados por Maven/Java
+target/
+bin/
+*.class
+*.log
+
+# Archivos de IDE (Eclipse, IntelliJ, etc.)
+.metadata/
+.settings/
+.project
+.classpath
+.idea/
+*.iml
