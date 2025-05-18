@@ -1,14 +1,4 @@
-/* 
- * Proyecto final de sistema de gestion de hospital
- * 
- * Integrantes
- * John Dehiby Morales Guzmán
- * Darwin Castro
- * Miguel Angel Diaz Rodriguez
- * 
- * Version: 1.0 Abril 2025
- */
-package co.edu.uniquindio.poo.proyectofinalprogramacion1;
+package co.edu.uniquindio.proyectoprogramacion.model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,91 +6,97 @@ import java.util.Scanner;
 import java.time.*;
 
 public class Medico extends Usuario implements HorarioConsulta,Notificacion{
-	private ArrayList<Paciente> listPacientes;
-	private ArrayList<HistorialMedico> listHistorialMedico;
-	private ArrayList<LocalDateTime> listHorariosDisponibles;
+    private ArrayList<Paciente> listPacientes;
+    private ArrayList<HistorialMedico> listHistorialMedico;
+    private ArrayList<LocalDateTime> listHorariosDisponibles;
 
-	public Medico(String nombre,String id, String correo, String telefono, int edad) {
-		
-		super(nombre,id,correo,telefono,edad);
-		this.listPacientes=new ArrayList<>();
-		this.listHistorialMedico= new ArrayList<>();
-		this.listHorariosDisponibles=new ArrayList<>();
-	}
-	@Override
-	public void registrarDatosPersonales() {
-		System.out.println("\n Registro de datos Medico");
-		System.out.println("Nombre: " + nombre);
-		System.out.println("Id: " + id);
-		System.out.println("Correo: " + correo);
-		System.out.println("Telefono: " + telefono);
-		System.out.println("Edad: " + edad);
+    public Medico(String nombre,String id, String correo, String telefono, int edad) {
+
+        super(nombre,id,correo,telefono,edad);
+        this.listPacientes=new ArrayList<>();
+        this.listHistorialMedico= new ArrayList<>();
+        this.listHorariosDisponibles=new ArrayList<>();
+    }
+    @Override
+    public void registrarDatosPersonales() {
+        System.out.println("\n Registro de datos Medico");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Id: " + id);
+        System.out.println("Correo: " + correo);
+        System.out.println("Telefono: " + telefono);
+        System.out.println("Edad: " + edad);
 
 
-		
-	}
-	@Override
-	public void actualizarDatosPersonales() {
-		Scanner actualizacionDatos = new Scanner(System.in);
-		
-		System.out.println("Actualice su nombre:");
-		setNombre(actualizacionDatos.nextLine());
-		
-		System.out.println("Actualice su id:");
-		setId(actualizacionDatos.nextLine());
-		
-		System.out.println("Actualice su correo:");
-		setCorreo(actualizacionDatos.nextLine());
-		
-		System.out.println("Actualice su telefono:");
-		setTelefono(actualizacionDatos.nextLine());
-		
-		System.out.println("Actualice su edad:");
-		setEdad(actualizacionDatos.nextInt());
-		
-		actualizacionDatos.nextLine();
-		System.out.println("Sus datos fueron actualizados correctamente");
-		
-		actualizacionDatos.close();
-	}
-	@Override
-	public void establecerHorarioDisponible(LocalDateTime horario) {
-		listHorariosDisponibles.add(horario);
-	}
-	@Override
-	public ArrayList<LocalDateTime> obtenerHorariosDisponibles(){
-		return listHorariosDisponibles;
-	}
-	public HistorialMedico registrarDiagnostico(String idpacientebuscar, String diagnosticonuevo){
-		for(Paciente p:listPacientes) {
-			if(p.getId().equals(idpacientebuscar)){
-				for(HistorialMedico h: p.getListHistorialmedico()) {
-					h.setDiagnostico(diagnosticonuevo);
-					return h;
-				}
-			}
-		}
-		return null;
-	}
-	public HistorialMedico registrarTratamiento(String idpacientebuscar, String nuevoTratamiento){
-		for(Paciente p:listPacientes) {
-			if(p.getId().equals(idpacientebuscar)) {
-				for(HistorialMedico h: p.getListHistorialmedico()) {
-					h.setTratamiento(nuevoTratamiento);
-					return h;
-				}
-			}
-		}return null;
-	}
-	//Se implementa la interfaz notificaciones pero es para que el medico reciba el el mensaje
-	public void notificar(String mensaje) {
-		System.out.println("El Medico: " + getNombre() + " recibió el mensaje " + mensaje);
-	}
-	public ArrayList<Paciente> getlistPacientesDisponibles(){
-		return listPacientes;
-	}
-	public ArrayList<HistorialMedico> getListHistorialMedico(){
-		return listHistorialMedico;
-	}
-	
+
+    }
+    @Override
+    public void actualizarDatosPersonales() {
+        Scanner actualizacionDatos = new Scanner(System.in);
+
+        System.out.println("Actualice su nombre:");
+        setNombre(actualizacionDatos.nextLine());
+
+        System.out.println("Actualice su id:");
+        setId(actualizacionDatos.nextLine());
+
+        System.out.println("Actualice su correo:");
+        setCorreo(actualizacionDatos.nextLine());
+
+        System.out.println("Actualice su telefono:");
+        setTelefono(actualizacionDatos.nextLine());
+
+        System.out.println("Actualice su edad:");
+        setEdad(actualizacionDatos.nextInt());
+
+        actualizacionDatos.nextLine();
+        System.out.println("Sus datos fueron actualizados correctamente");
+
+        actualizacionDatos.close();
+    }
+    @Override
+    public void establecerHorarioDisponible(LocalDateTime horario) {
+        listHorariosDisponibles.add(horario);
+    }
+    @Override
+    public ArrayList<LocalDateTime> obtenerHorariosDisponibles(){
+        return listHorariosDisponibles;
+    }
+    public HistorialMedico registrarDiagnostico(String idpacientebuscar, String diagnosticonuevo){
+        for(Paciente p:listPacientes) {
+            if(p.getId().equals(idpacientebuscar)){
+                for(HistorialMedico h: p.getListHistorialmedico()) {
+                    h.setDiagnostico(diagnosticonuevo);
+                    return h;
+                }
+            }
+        }
+        return null;
+    }
+    public HistorialMedico registrarTratamiento(String idpacientebuscar, String nuevoTratamiento){
+        for(Paciente p:listPacientes) {
+            if(p.getId().equals(idpacientebuscar)) {
+                for(HistorialMedico h: p.getListHistorialmedico()) {
+                    h.setTratamiento(nuevoTratamiento);
+                    return h;
+                }
+            }
+        }return null;
+    }
+    //Se implementa la interfaz notificaciones pero es para que el medico reciba el el mensaje
+    public void notificar(String mensaje) {
+        System.out.println("El Medico: " + getNombre() + " recibió el mensaje " + mensaje);
+    }
+
+    @Override
+    public boolean getPaciente() {
+        return false;
+    }
+
+    public ArrayList<Paciente> getlistPacientesDisponibles(){
+        return listPacientes;
+    }
+    public ArrayList<HistorialMedico> getListHistorialMedico(){
+        return listHistorialMedico;
+    }
+
 }

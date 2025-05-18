@@ -1,6 +1,6 @@
-package co.edu.uniquindio.poo.proyectofinalprogramacion1;
+package co.edu.uniquindio.proyectoprogramacion.model;
 
 public interface Notificacion {
-	void notificar(String mensaje);
+    void notificar(String mensaje);
 
 }
