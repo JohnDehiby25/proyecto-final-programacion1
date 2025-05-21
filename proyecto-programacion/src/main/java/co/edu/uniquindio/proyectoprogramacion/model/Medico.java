@@ -5,18 +5,19 @@ import java.util.Scanner;
 
 import java.time.*;
 
-public class Medico extends Usuario implements HorarioConsulta,Notificacion{
+public class Medico extends Usuario implements HorarioConsulta,Notificacion {
     private ArrayList<Paciente> listPacientes;
     private ArrayList<HistorialMedico> listHistorialMedico;
     private ArrayList<LocalDateTime> listHorariosDisponibles;
 
-    public Medico(String nombre,String id, String correo, String telefono, int edad) {
+    public Medico(String nombre, String id, String correo, String telefono, int edad) {
 
-        super(nombre,id,correo,telefono,edad);
-        this.listPacientes=new ArrayList<>();
-        this.listHistorialMedico= new ArrayList<>();
-        this.listHorariosDisponibles=new ArrayList<>();
+        super(nombre, id, correo, telefono, edad);
+        this.listPacientes = new ArrayList<>();
+        this.listHistorialMedico = new ArrayList<>();
+        this.listHorariosDisponibles = new ArrayList<>();
     }
+
     @Override
     public void registrarDatosPersonales() {
         System.out.println("\n Registro de datos Medico");
@@ -27,8 +28,8 @@ public class Medico extends Usuario implements HorarioConsulta,Notificacion{
         System.out.println("Edad: " + edad);
 
 
-
     }
+
     @Override
     public void actualizarDatosPersonales() {
         Scanner actualizacionDatos = new Scanner(System.in);
@@ -53,18 +54,21 @@ public class Medico extends Usuario implements HorarioConsulta,Notificacion{
 
         actualizacionDatos.close();
     }
+
     @Override
     public void establecerHorarioDisponible(LocalDateTime horario) {
         listHorariosDisponibles.add(horario);
     }
+
     @Override
-    public ArrayList<LocalDateTime> obtenerHorariosDisponibles(){
+    public ArrayList<LocalDateTime> obtenerHorariosDisponibles() {
         return listHorariosDisponibles;
     }
-    public HistorialMedico registrarDiagnostico(String idpacientebuscar, String diagnosticonuevo){
-        for(Paciente p:listPacientes) {
-            if(p.getId().equals(idpacientebuscar)){
-                for(HistorialMedico h: p.getListHistorialmedico()) {
+
+    public HistorialMedico registrarDiagnostico(String idpacientebuscar, String diagnosticonuevo) {
+        for (Paciente p : listPacientes) {
+            if (p.getId().equals(idpacientebuscar)) {
+                for (HistorialMedico h : p.getListHistorialmedico()) {
                     h.setDiagnostico(diagnosticonuevo);
                     return h;
                 }
@@ -72,31 +76,25 @@ public class Medico extends Usuario implements HorarioConsulta,Notificacion{
         }
         return null;
     }
-    public HistorialMedico registrarTratamiento(String idpacientebuscar, String nuevoTratamiento){
-        for(Paciente p:listPacientes) {
-            if(p.getId().equals(idpacientebuscar)) {
-                for(HistorialMedico h: p.getListHistorialmedico()) {
+
+    public HistorialMedico registrarTratamiento(String idpacientebuscar, String nuevoTratamiento) {
+        for (Paciente p : listPacientes) {
+            if (p.getId().equals(idpacientebuscar)) {
+                for (HistorialMedico h : p.getListHistorialmedico()) {
                     h.setTratamiento(nuevoTratamiento);
                     return h;
                 }
             }
-        }return null;
+        }
+        return null;
     }
+
     //Se implementa la interfaz notificaciones pero es para que el medico reciba el el mensaje
     public void notificar(String mensaje) {
         System.out.println("El Medico: " + getNombre() + " recibió el mensaje " + mensaje);
     }
-
-    @Override
-    public boolean getPaciente() {
-        return false;
-    }
-
-    public ArrayList<Paciente> getlistPacientesDisponibles(){
-        return listPacientes;
-    }
-    public ArrayList<HistorialMedico> getListHistorialMedico(){
-        return listHistorialMedico;
-    }
-
 }
+
+
+
+
